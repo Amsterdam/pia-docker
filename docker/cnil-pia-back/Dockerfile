@@ -21,8 +21,15 @@ WORKDIR /var/www/
 RUN gem install bundler
 RUN bundle install
 
+# Force SSL in production
+RUN sed -i 's/# config.force_ssl = true/config.force_ssl = true/' config/environments/production.rb
+
 COPY entrypoint /entrypoint
 RUN chmod +x /entrypoint
 ENTRYPOINT ["/entrypoint"]
 
-CMD ["bin/rails", "server"]
+# Without SSL you can use:
+# CMD ["bin/rails", "server"]
+
+# Add SSL certificate locations
+CMD ["bundle", "exec", "puma", "-b", "ssl://0.0.0.0:3000?key=/etc/letsencrypt/live/pia-amsterdam.nl/privkey.pem&cert=/etc/letsencrypt/live/pia-amsterdam.nl/fullchain.pem"]
