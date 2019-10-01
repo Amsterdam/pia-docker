@@ -11,8 +11,11 @@ It is a fork of Killian Kemps (https://github.com/KillianKemps) who has created 
 
 You will still have to create a domain, valid certificate and add the back-end URL on the front-end interface manually, which will be explained in this readme. This fork of is an example how we deployed our instance for testing purposes.
 
+IMPORTANT!
+If both front and backend are running properly, you still have to add your backend url to the frontend manually by clicking on the Start button, and then on the menu item Tools and then on the word Settings, else the PIA's will only be stored locally, not in the database.
+
 ## Prerequisites
--
+
 1. Get and install **Docker** https://www.docker.com/get-docker on your machine
 2. Clone this repository
 
